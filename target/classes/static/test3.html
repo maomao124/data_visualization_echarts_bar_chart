@@ -1,0 +1,94 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自定义单个柱子颜色</title>
+
+    <script src="./js/echarts.js"></script>
+
+</head>
+
+<style>
+    #container {
+        width: 70vw;
+        height: 70vh;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+</style>
+<body>
+<div id="container"></div>
+<script>
+    //初始化echarts实例
+    var chart = echarts.init(document.getElementById('container'));
+
+
+    var seriesData = [
+        120,
+        200,
+        160,
+        80,
+        70,
+        110,
+        130
+    ]
+    // 指定图表的配置项和数据
+    var option =
+        {
+            xAxis: {
+                type: 'category',
+                data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: [
+                {
+                    data: (function ()
+                    {
+                        let data1 = []
+                        for (let i = 0; i < seriesData.length; i++)
+                        {
+                            if (seriesData[i] > 150)
+                            {
+                                data1.push(
+                                    {
+                                        value: seriesData[i],
+                                        itemStyle: {
+                                            color: '#ffaacc'
+                                        }
+                                    }
+                                )
+                            }
+                            else if (seriesData[i]<75)
+                            {
+                                data1.push(
+                                    {
+                                        value: seriesData[i],
+                                        itemStyle: {
+                                            color: '#aadd00'
+                                        }
+                                    }
+                                )
+                            }
+                            else
+                            {
+                                data1.push(seriesData[i])
+                            }
+                        }
+                        console.log(data1)
+                        return data1;
+                    }()),
+                    type: 'bar'
+                }
+            ]
+        };
+
+    //使用刚指定的配置项和数据显示图表
+    chart.setOption(option);
+
+</script>
+
+</body>
+</html>

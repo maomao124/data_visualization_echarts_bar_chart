@@ -1,0 +1,70 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>堆叠柱状图</title>
+
+    <script src="./js/echarts.js"></script>
+
+</head>
+
+<style>
+    #container {
+        width: 70vw;
+        height: 70vh;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+</style>
+<body>
+<div id="container"></div>
+<script>
+    //初始化echarts实例
+    var chart = echarts.init(document.getElementById('container'));
+
+    // 指定图表的配置项和数据
+    var option =
+        {
+            xAxis: {
+                type: 'category',
+                data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+            },
+            yAxis: {
+                type: 'value'
+            },
+            legend: {
+                data: ['柱状图1', '柱状图2', '柱状图3']
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow'
+                }
+            },
+            series: [
+                {
+                    data: [820, 932, 901, 545, 1290, 1330, 1320],
+                    type: 'bar',
+                    name: "柱状图1"
+                },
+                {
+                    data: [567, 932, 901, 934, 456, 475, 758],
+                    type: 'bar',
+                    name: "柱状图2"
+                },
+                {
+                    data: [566, 586, 901, 934, 425, 477, 457],
+                    type: 'bar',
+                    name: "柱状图3"
+                }
+            ]
+        };
+
+    //使用刚指定的配置项和数据显示图表
+    chart.setOption(option);
+
+</script>
+
+</body>
+</html>
